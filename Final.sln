@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicFormsAPI", "DynamicFormsAPI\DynamicFormsAPI.csproj", "{5D8082E9-73DF-2420-46A4-FE29401CD089}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D8082E9-73DF-2420-46A4-FE29401CD089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D8082E9-73DF-2420-46A4-FE29401CD089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D8082E9-73DF-2420-46A4-FE29401CD089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D8082E9-73DF-2420-46A4-FE29401CD089}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {417B8CA8-0DC1-4E6A-94C5-4D6D9E60F54C}
+	EndGlobalSection
+EndGlobal
