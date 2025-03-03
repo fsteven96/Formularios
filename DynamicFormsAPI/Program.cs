@@ -52,14 +52,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Registrar el repositorio
 builder.Services.AddScoped<FormularioRepository>();
 
-// Habilitar CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost3000", builder =>
         builder.WithOrigins("http://localhost:3000") // Permitir solicitudes solo desde localhost:3000
-               .AllowAnyHeader() // Permitir cualquier encabezado
-               .AllowAnyMethod()); // Permitir cualquier método (GET, POST, PUT, DELETE, etc.)
+               .WithHeaders("Content-Type", "Authorization") // Permitir encabezados específicos
+               .WithMethods("GET", "POST", "PUT", "DELETE")); // Especificar métodos permitidos
 });
+
+
+
 
 // Agregar servicios para los controladores
 builder.Services.AddControllers();
@@ -68,10 +70,14 @@ var app = builder.Build();
 
 // Usar CORS antes de las rutas y la autorización
 app.UseCors("AllowLocalhost3000"); // Usar la política de CORS configurada
-
+app.Use(async (context, next) =>
+{
+    Console.WriteLine($"CORS headers: {context.Response.Headers["Access-Control-Allow-Origin"]}");
+    await next.Invoke();
+});
 app.UseRouting();
-app.UseAuthorization();
 
+app.UseAuthorization();
 // Mapear los controladores
 app.MapControllers();
 

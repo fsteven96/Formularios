@@ -4,7 +4,7 @@ namespace DynamicFormsAPI.Models
 {
     public class Respuesta
     {
-        public int Id { get; set; }
+        public int Iclsd { get; set; }
 
         public int FormularioId { get; set; }
 

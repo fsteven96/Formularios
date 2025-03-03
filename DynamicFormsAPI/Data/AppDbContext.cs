@@ -9,6 +9,7 @@ namespace DynamicFormsAPI.Data
 
         public DbSet<Formulario> Formularios { get; set; }
         public DbSet<Campo> Campos { get; set; }
+        // public DbSet<Respuesta> Respuestas { get; set; } // Se agrega el DbSet<Respuesta>
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

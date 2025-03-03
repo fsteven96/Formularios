@@ -8,6 +8,6 @@ namespace DynamicFormsAPI.Models
         public string Nombre { get; set; }
         public string Tipo { get; set; } // Ejemplo: "text", "number", "date"
         [JsonIgnore] 
-        public Formulario Formulario { get; set; }
+        public Formulario? Formulario { get; set; }
     }
 }
