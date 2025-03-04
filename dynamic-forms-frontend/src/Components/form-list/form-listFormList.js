@@ -67,8 +67,8 @@ function FormList() {
         <div className="row">
           {/* Itera sobre los formularios y muestra cada uno */}
           {formularios.map((formulario) => (
-            <div key={formulario.id} id={formulario.id} className="col-md-4 mb-4">
-              <div className="card shadow-sm" style={{backgroundColor: '#f8f9fa', padding: '20px', borderRadius: '5px'}}>
+            <div key={formulario.id} id={formulario.id} className="col-md-4 mb-4 w-50">
+              <div className="card " style={{boxShadow: 'rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px',backgroundColor: '#f8f9fa', padding: '20px', borderRadius: '5px'}}>
                 <div className="card-body p-0">
                   <h5 className="card-title">{formulario.nombre}</h5>
                   <span>Columnas: </span>
@@ -84,26 +84,42 @@ function FormList() {
                   )}
 
                   <br></br>
-                  <div className='d-flex gap-2 mt-2'>
+                  <div className='d-flex gap-2 mt-2 justify-content-center flex-column flex-sm-row'>
                     <button
                       onClick={() => {
                         setIdSelecionado(formulario.id);
                         setNombreSelecionado(formulario.nombre);
                         handleOpenModal();
                       }} 
-                      className="btn btn-primary w-50"
+                      className="btn btn-primary "
                     >
                       Editar
                     </button>
+
+                    <button
+                      onClick={() => {
+                        // Aquí va el código para mostrar la vista previa, por ejemplo:
+                        setIdSelecionado(formulario.id);
+                        setNombreSelecionado(formulario.nombre);
+                          // Implementa la función `handleOpenPreviewModal` para mostrar la vista previa
+                      }} 
+                      className="btn btn-warning ">
+                      Vista previa
+                    </button>
+
                     <button
                     onClick={() => {
                       setIdSelecionado(formulario.id);
                       setNombreSelecionado(formulario.nombre);
                       handleOpenDeleteModal();
                     }} 
-                    className="btn btn-warning w-50">
+                    className="btn btn-danger ">
                     Eliminar 
-                  </button>
+                    </button>
+
+                    
+
+
                   </div>
                   
                 </div>

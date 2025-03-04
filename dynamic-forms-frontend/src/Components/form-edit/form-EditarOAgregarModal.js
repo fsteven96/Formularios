@@ -15,7 +15,7 @@ function FormularioModal({ isOpen, onClose , fetchFormularios, formularioId }) {
   useEffect(() => {
     if (!isOpen) return;
     
-    const fetchFormulario = async () => {
+    const fetchInput = async () => {
       try {
         console.log(formularioId)
         const response = await axios.get(`http://localhost:5033/api/formulario/${formularioId}`);
@@ -31,30 +31,32 @@ function FormularioModal({ isOpen, onClose , fetchFormularios, formularioId }) {
       }
     };
 
-    fetchFormulario();
+    fetchInput();
   }, [isOpen, formularioId]);
 
-  const handleInputChange = (e, index = null, field = null, id=0) => {
-    console.log( index, field, id)
+  const handleInputChange = (e, index = null, field = null, i) => {
+    console.log( index, field)
     const { name, value } = e.target;
-
+  
     if (index !== null && field) {
       // Actualizar campo dinámico
       setFormData((prev) => {
+        
         const nuevosCampos = [...prev.campos];
-        nuevosCampos[index] = { ...nuevosCampos[index], [field]: value, ["id"]: index };
+        nuevosCampos[i] = { ...nuevosCampos[i], [field]: value, ["id"]: index };
         return { ...prev, campos: nuevosCampos };
       });
     } else {
       // Actualizar nombre del formulario
       setFormData({ ...formData, [name]: value });
     }
+    
   };
 
   const agregarCampo = () => {
     setFormData((prev) => ({
       ...prev,
-      campos: [...prev.campos, { id: 0, Nombre: "", tipo: "texto" , FormularioId:0}],
+      campos: [...prev.campos, { id: 0, Nombre: "", tipo: "texto" , FormularioId:0, "esNuevo": true}],
     }));
   };
 
@@ -96,7 +98,13 @@ function FormularioModal({ isOpen, onClose , fetchFormularios, formularioId }) {
         formularioAEnviar.Id = formularioId;
         formularioAEnviar.Campos = formularioAEnviar.Campos.map((campo, index) => {
           // Añadir el campo Id de cada campo
-          campo.Id = formData.campos[index].id;
+          console.log("Es nuevo ",formData.campos[index].esNuevo )
+          if (formData.campos[index].esNuevo) {
+            campo.Id = 0;
+          } else {
+            campo.Id = formData.campos[index].id;
+          }
+          
           return campo;
         });
         console.log("Respuesta del servidor:", formularioAEnviar);
@@ -106,7 +114,7 @@ function FormularioModal({ isOpen, onClose , fetchFormularios, formularioId }) {
               "Content-Type": "application/json",
             },
           });
-          console.log("Formulario actualizado:", response);
+          console.log("Formulario actualizado:", response.data);
         } catch (error) {
           console.error("Error al actualizar formulario:", error);
           alert("Hubo un error al actualizar el formulario.");
@@ -170,7 +178,8 @@ function FormularioModal({ isOpen, onClose , fetchFormularios, formularioId }) {
               </div>
 
               {formData.campos.map((campo, index) => (
-                <div className="row mb-3 align-items-center" key={campo.id !== 0 ? campo.id : `temp-${index}`}>
+                
+                <div className="row mb-3 align-items-center" key={`temp-${index}`}>
                   <div className="col-5">
                     <label htmlFor={`nom${campo.id !== 0 ? campo.id : index}`} className="form-label">
                       Nombre
@@ -180,7 +189,7 @@ function FormularioModal({ isOpen, onClose , fetchFormularios, formularioId }) {
                       type="text"
                       className="form-control"
                       value={campo.nombre || ""}
-                      onChange={(e) => handleInputChange(e, campo.id !== 0 ? campo.id : index, "nombre", campo.id)}
+                      onChange={(e) => handleInputChange(e, campo.id !== 0 ? campo.id : index, "nombre", index)}
                       name={`campo-${index}-nombre`}
                     />
                   </div>
@@ -193,7 +202,7 @@ function FormularioModal({ isOpen, onClose , fetchFormularios, formularioId }) {
                      id= {`tipo${campo.id !== 0 ? campo.id : index}`}
                       className="form-control"
                       value={campo.tipo || "texto"}
-                      onChange={(e) => handleInputChange(e, campo.id !== 0 ? campo.id : index, "tipo", campo.id)}
+                      onChange={(e) => handleInputChange(e, campo.id !== 0 ? campo.id : index, "tipo", index)}
                       name={`campo-tipo-${campo.id !== 0 ? campo.id : index}tipo`}
                     >
                       <option value="texto">Texto</option>
