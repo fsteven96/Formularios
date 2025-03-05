@@ -40,8 +40,8 @@ function ResultadosModal({ isOpen, onClose, formularioId, fetchFormularios }) {
     <>
       <div className="modal-backdrop-custom" onClick={onClose}></div>
       <div className="modal d-block" tabIndex="-1">
-        <div className="modal-dialog">
-          <div className="modal-content" style={{width:'650px'}}>
+      <div className="modal-dialog modal-dialog-scrollable" style={{maxwidth: '100%'}}>
+          <div className="modal-content" >
             <div className="modal-header">
               <h5 className="modal-title">Resultados</h5>
               <button type="button" className="btn-close" onClick={onClose}></button>

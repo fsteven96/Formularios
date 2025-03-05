@@ -1,21 +1,14 @@
-# 📝 Proyecto de Formularios Dinámicos
-
-Este proyecto permite la creación y gestión dinámica de formularios y sus campos. La aplicación está dividida en dos partes: el **Backend** y el **Frontend**.
-
-## Requisitos  
-- **Backend (ASP.NET Core API)**: .NET 9.0, SQL Server  
-- **Frontend (React)**: Node.js 20.13.1, npm (gestor de paquetes)  
-
-## Ejecución  
-
-```bash
 # Clonar el repositorio
 git clone https://github.com/fsteven96/Formularios.git
 
 # Ejecutar el script SQL en el servidor de base de datos
-Configurar la cadena de conexión en appsettings.json:
+Asegúrate de ejecutar el script 'FormDB.sql' para crear la base de datos.
+El script se encuentra en la raíz del proyecto.
+Usa SQL Server Management Studio o cualquier otra herramienta compatible.
+
+#Configurar la cadena de conexión en appsettings.json:
 "ConnectionStrings": {
-   "DefaultConnection": "Server=localhost;Database=FormulariosDB;User Id=sa;Password=tu_contraseña;"
+   "DefaultConnection": "Server=[Pon el nombre de Tu servidor];Database=FormDB;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
  }
 
 # Backend
@@ -45,21 +38,28 @@ Consulta de respuestas – Visualización de respuestas ingresadas en los formul
 
 ### Listado de formularios  
 ![Listado de Formularios](evidencias/listado_formularios.png)  
+![Listado de Formularios - Móvil](evidencias/movil_listado_formularios.png)  
 
 ### Creación de formularios  
 ![Creación de Formularios](evidencias/creacion_formulario.png)  
+![Creación de Formularios - Móvil](evidencias/movil_creacion_formulario.png)  
 
 ### Edición de formularios  
 ![Edición de Formularios](evidencias/edicion_formulario.png)  
+![Edición de Formularios - Móvil](evidencias/movil_creacion_formulario_.png)  
+
+### Eliminación de formularios  
+![Eliminación de Formularios](evidencias/eliminacion_formulario.png)  
+![Eliminación de Formularios - Móvil](evidencias/movil_eliminacion_formulario.png)  
 
 ### Creación de campos (inputs) de un formulario  
 ![Creación de Inputs](evidencias/creacion_inputs.png)  
-
-### Edición de campos (inputs) de un formulario  
-![Edición de Inputs](evidencias/edicion_inputs.png)  
+![Creación de Inputs - Móvil](evidencias/movil_creacion_inputs.png) 
 
 ### Ingreso de información en un formulario (extra)  
 ![Ingreso de Información](evidencias/ingreso_informacion.png)  
+![Ingreso de Información - Móvil](evidencias/movil_ingreso_informacion.png)  
 
 ### Consulta de información de un formulario (extra)  
 ![Consulta de Información](evidencias/consulta_informacion.png)  
+![Consulta de Información - Móvil](evidencias/movil_consulta_informacion.png)  
