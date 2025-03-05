@@ -74,8 +74,7 @@ namespace DynamicFormsAPI.Controllers
 
             try
             {
-                Console.WriteLine(formulario);
-                Console.WriteLine("here controller");
+                
                 // Llamamos al repositorio para guardar el formulario con sus campos
                 bool isSaved = await _repo.SaveFormularioAsync(formulario);
 
@@ -144,24 +143,8 @@ namespace DynamicFormsAPI.Controllers
         }
 
 
-        // [HttpGet]
-        // public async Task<ActionResult<IEnumerable<Formulario>>> GetRespuestaPorID()
-        // {
-        //               try
-        //     {
-        //         // Intentamos obtener los formularios
-        //         var formularios = await _repo.ObtenerFormulariosAsync();
-        //         return Ok(formularios); // Si no hay error, devolvemos los formularios
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         // Aquí registramos cualquier error adicional si no fue registrado en el repositorio
-        //         _logger.LogError(ex, "Ocurrió un error al obtener los formularios en el controlador.");
-                
-        //         // Devolvemos un error genérico al cliente
-        //         return StatusCode(500, "Ocurrió un error inesperado al obtener los formularios.");
-        //     }
-        // }
+      
+
 
 
     }

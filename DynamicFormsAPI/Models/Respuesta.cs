@@ -4,7 +4,7 @@ namespace DynamicFormsAPI.Models
 {
     public class Respuesta
     {
-        public int Iclsd { get; set; }
+        public int Id { get; set; }
 
         public int FormularioId { get; set; }
 
@@ -13,10 +13,7 @@ namespace DynamicFormsAPI.Models
 
         public DateTime FechaRegistro { get; set; } = DateTime.Now;
 
-        [JsonIgnore] 
-        public Formulario Formulario { get; set; }
-
-        [JsonIgnore] 
-        public Campo Campo { get; set; }
+        public Formulario? Formulario { get; set; }  
+        public Campo? Campo { get; set; }  
     }
 }

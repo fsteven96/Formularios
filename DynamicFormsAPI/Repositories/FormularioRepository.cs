@@ -210,6 +210,44 @@ namespace DynamicFormsAPI.Repositories
             
         }
 
+        public async Task<bool> SaveResultadosAsync(List<Respuesta> respuestas)
+        {
+            try
+            {
+                await _context.Respuestas.AddRangeAsync(respuestas); 
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Hubo un error al guardar la respuesta.");
+                return false;
+            }
+        }
+
+       public async Task<List<Respuesta>> ObtenerRespuestasAsync(int formularioId)
+        {
+            try
+            {
+                var respuestas = await _context.Respuestas
+                    .Include(r => r.Formulario) 
+                    .Include(r => r.Campo)       
+                    .Where(r => r.FormularioId == formularioId)  
+                    .ToListAsync();  
+
+                return respuestas;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener respuestas: {ex.Message}");
+
+                return new List<Respuesta>();
+            }
+        }
+
+
+
+
     }
 
 

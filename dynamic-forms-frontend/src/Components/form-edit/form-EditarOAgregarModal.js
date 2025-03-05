@@ -167,7 +167,7 @@ function FormularioModal({ isOpen, onClose , fetchFormularios, formularioId }) {
                 <label htmlFor="nombreFormulario" className="form-label fw-bold">
                   Nombre del formulario
                 </label>
-                <input
+                <input 
                   id="nombreFormulario"
                   type="text"
                   className="form-control"
@@ -208,7 +208,7 @@ function FormularioModal({ isOpen, onClose , fetchFormularios, formularioId }) {
                       <option value="texto">Texto</option>
                       <option value="numero">Número</option>
                       <option value="fecha">Fecha</option>
-                      <option value="booleano">Booleano</option>
+                      {/* <option value="booleano">Estado</option> */}
                     </select>
                   </div>
 

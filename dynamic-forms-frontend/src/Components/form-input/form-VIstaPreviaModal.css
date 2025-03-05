@@ -1,0 +1,16 @@
+/* Fondo oscuro con desenfoque */
+.modal-backdrop-custom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Oscurecido */
+  backdrop-filter: blur(5px); /* Efecto borroso */
+  z-index: 1040; /* Más alto que el contenido de la página */
+}
+
+/* Asegurar que el modal esté sobre el fondo */
+.modal {
+  z-index: 1050; /* Más alto que el backdrop */
+}

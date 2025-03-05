@@ -55,9 +55,9 @@ builder.Services.AddScoped<FormularioRepository>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost3000", builder =>
-        builder.WithOrigins("http://localhost:3000") // Permitir solicitudes solo desde localhost:3000
-               .WithHeaders("Content-Type", "Authorization") // Permitir encabezados específicos
-               .WithMethods("GET", "POST", "PUT", "DELETE")); // Especificar métodos permitidos
+        builder.AllowAnyOrigin()
+               .WithHeaders("Content-Type", "Authorization") 
+               .WithMethods("GET", "POST", "PUT", "DELETE")); 
 });
 
 

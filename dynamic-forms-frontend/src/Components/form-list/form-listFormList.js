@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import FormularioModal from '../form-edit/form-EditarOAgregarModal';
 import DeleteModal from '../form-delete/form-DeleteModal';
+import VistaPreviaModal from '../form-input/form-VIstaPreviaModal';
+import ResultadosModal from './form-ResultadosModal';
 
 function FormList() {
   const [formularios, setFormularios] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalDeleteOpen, setIsModaldeleteOpen] = useState(false);
+  const [isModalPreviewOpen, setIsModalPreviewOpen] = useState(false);
+  const [isModalResultadosOpen, setIsModalResultadosOpen] = useState(false);
   const [id_selecionado, setIdSelecionado] = useState(0);
   const [nombreSlecionado, setNombreSelecionado] = useState(0);
 
@@ -27,6 +31,12 @@ function FormList() {
   const reiniciarID = ()=> {setIdSelecionado(0); };
   const handleOpenDeleteModal = () => {setIsModaldeleteOpen(true); };
   const handleCloseDeleteModal = () => {setIsModaldeleteOpen(false); };
+  
+  const handleOpenPreviewModal = () => {setIsModalPreviewOpen(true); };
+  const handleClosePreviewModal = () => {setIsModalPreviewOpen(false); };
+
+  const handleOpenResultadosModal = () => {setIsModalResultadosOpen(true); };
+  const handleCloseResultadosModal = () => {setIsModalResultadosOpen(false); };
 
   const fetchFormularios = () => {
     axios
@@ -55,6 +65,12 @@ function FormList() {
       <DeleteModal isOpen={isModalDeleteOpen} onClose={handleCloseDeleteModal} id={id_selecionado} 
       nombreForm={nombreSlecionado} fetchFormularios={fetchFormularios} 
       />
+      <VistaPreviaModal  isOpen={isModalPreviewOpen} 
+      onClose={handleClosePreviewModal} formularioId={id_selecionado} 
+      fetchFormularios={fetchFormularios}  />
+      <ResultadosModal  isOpen={isModalResultadosOpen} 
+      onClose={handleCloseResultadosModal} formularioId={id_selecionado} 
+      fetchFormularios={fetchFormularios}  />
       {/* Si no hay formularios disponibles */}
       {formularios.length === 0 ? (
        
@@ -95,18 +111,6 @@ function FormList() {
                     >
                       Editar
                     </button>
-
-                    <button
-                      onClick={() => {
-                        // Aquí va el código para mostrar la vista previa, por ejemplo:
-                        setIdSelecionado(formulario.id);
-                        setNombreSelecionado(formulario.nombre);
-                          // Implementa la función `handleOpenPreviewModal` para mostrar la vista previa
-                      }} 
-                      className="btn btn-warning ">
-                      Vista previa
-                    </button>
-
                     <button
                     onClick={() => {
                       setIdSelecionado(formulario.id);
@@ -117,8 +121,25 @@ function FormList() {
                     Eliminar 
                     </button>
 
-                    
+                    <button
+                      onClick={() => {
+                        setIdSelecionado(formulario.id);
+                        setNombreSelecionado(formulario.nombre);
+                        handleOpenPreviewModal()
+                      }} 
+                      className="btn btn-warning ">
+                      Vista previa
+                    </button>
 
+                    <button
+                      onClick={() => {
+                        setIdSelecionado(formulario.id);
+                        setNombreSelecionado(formulario.nombre);
+                        handleOpenResultadosModal()
+                      }} 
+                      className="btn btn-info ">
+                      Ver resultados
+                    </button>
 
                   </div>
                   
