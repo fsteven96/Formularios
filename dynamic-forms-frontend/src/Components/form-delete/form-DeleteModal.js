@@ -7,6 +7,7 @@ function DeleteModal({ isOpen, onClose , id, nombreForm, fetchFormularios}) {
 
   const handleDelete = async () => {
     try {
+      console.log(id)
       await axios.delete(`http://localhost:5033/api/formulario/${id}`);
       
       onClose(); 

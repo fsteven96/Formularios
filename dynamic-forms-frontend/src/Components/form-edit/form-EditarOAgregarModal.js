@@ -158,7 +158,7 @@ function FormularioModal({ isOpen, onClose , fetchFormularios, formularioId }) {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Agregar Formulario</h5>
+              <h5 className="modal-title"> {formularioId !== 0 ? 'Editar Formulario' : 'Agregar Formulario'}</h5>
               <button type="button" className="btn-close" onClick={onClose}></button>
             </div>
 
